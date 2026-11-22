@@ -1,0 +1,1936 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Electronic Component Calculator | ENTC Engineering Project</title>
+  <meta name="description" content="Professional Electronic Component Calculator for ENTC engineering and diploma students. Resistor color codes, capacitor codes, LED resistors, Ohm's law, power, voltage divider, series and parallel circuits.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <div class="app-layout">
+    <!-- ===============================================================
+         SIDEBAR NAVIGATION
+         =============================================================== -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="4"/>
+            <path d="M7 12h10M12 7v10"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>ElectroCalc</h1>
+          <span>ENTC Workbench</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-category">Main Dashboard</div>
+        <a class="nav-item active" data-view="view-home">
+          <span class="nav-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </span>
+          <span>Home Dashboard</span>
+        </a>
+
+        <div class="nav-category">Calculators</div>
+        <a class="nav-item" data-view="view-resistor">
+          <span class="nav-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h3l2-4 3 8 3-8 3 8 2-4h4"/></svg>
+          </span>
+          <span>Resistor Calculator</span>
+        </a>
+
+        <a class="nav-item" data-view="view-smd">
+          <span class="nav-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="6" width="16" height="12" rx="2"/><rect x="2" y="9" width="2" height="6" fill="currentColor"/><rect x="20" y="9" width="2" height="6" fill="currentColor"/><line x1="8" y1="12" x2="16" y2="12" stroke-dasharray="2 2"/></svg>
+          </span>
+          <span>SMD Resistor Codes</span>
+        </a>
+
+        <a class="nav-item" data-view="view-capacitor">
+          <span class="nav-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="12" x2="10" y2="12"/><line x1="10" y1="5" x2="10" y2="19"/><line x1="14" y1="5" x2="14" y2="19"/><line x1="14" y1="12" x2="22" y2="12"/></svg>
+          </span>
+          <span>Capacitor Calculator</span>
+        </a>
+
+        <a class="nav-item" data-view="view-led">
+          <span class="nav-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="12" x2="8" y2="12"/><polygon points="8,6 8,18 16,12" fill="currentColor"/><line x1="16" y1="6" x2="16" y2="18"/><line x1="16" y1="12" x2="22" y2="12"/><line x1="14" y1="6" x2="19" y2="1"/></svg>
+          </span>
+          <span>LED Series Resistor</span>
+        </a>
+
+        <a class="nav-item" data-view="view-timer">
+          <span class="nav-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/><path d="M9 2h6"/></svg>
+          </span>
+          <span>555 Timer & RC Filter</span>
+        </a>
+
+        <a class="nav-item" data-view="view-ohms-law">
+          <span class="nav-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19h4c.5-2 1.5-4 4-4s3.5 2 4 4h4"/><path d="M8 15a6 6 0 1 1 8 0"/></svg>
+          </span>
+          <span>Ohm's Law Calculator</span>
+        </a>
+
+        <a class="nav-item" data-view="view-power">
+          <span class="nav-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </span>
+          <span>DC Power Calculator</span>
+        </a>
+
+        <a class="nav-item" data-view="view-divider">
+          <span class="nav-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="4" r="2"/><line x1="12" y1="6" x2="12" y2="8"/><rect x="9" y="8" width="6" height="4" rx="1"/><line x1="12" y1="12" x2="12" y2="14"/><rect x="9" y="14" width="6" height="4" rx="1"/><line x1="12" y1="18" x2="12" y2="20"/></svg>
+          </span>
+          <span>Voltage Divider</span>
+        </a>
+
+        <a class="nav-item" data-view="view-series-parallel">
+          <span class="nav-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="3"/><line x1="6" y1="6" x2="6" y2="18"/><line x1="18" y1="6" x2="18" y2="18"/><line x1="6" y1="12" x2="18" y2="12"/></svg>
+          </span>
+          <span>Series & Parallel</span>
+        </a>
+
+        <div class="nav-category">Documentation</div>
+        <a class="nav-item" data-view="view-reference">
+          <span class="nav-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          </span>
+          <span>Component Reference</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div>ENTC Diploma Project</div>
+        <span class="project-tag">v2.0 • Offline Ready</span>
+      </div>
+    </aside>
+
+    <!-- ===============================================================
+         MAIN CONTENT AREA
+         =============================================================== -->
+    <div class="app-main">
+      <!-- Header -->
+      <header class="app-header">
+        <div class="header-left">
+          <button class="menu-toggle-btn" id="menuToggleBtn" aria-label="Toggle navigation menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <div class="breadcrumbs">
+            <span>Electronic Component Calculator</span> &gt; <span id="currentBreadcrumb">Home</span>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <button type="button" class="btn-secondary" id="btnOpenLabReport" style="padding: 8px 14px; font-size: 0.82rem; gap: 6px;" title="Generate & Print Official Lab Calculation Sheet">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <span>Lab Report</span>
+          </button>
+          <button class="theme-toggle-btn" id="themeToggleBtn" title="Toggle Light/Dark Theme" aria-label="Toggle Theme">
+            <svg id="themeIconDark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg id="themeIconLight" style="display:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- View Container -->
+      <main class="content-container">
+
+        <!-- =============================================================
+             VIEW 1: HOME DASHBOARD
+             ============================================================= -->
+        <section class="calc-view active" id="view-home">
+          <div class="hero-banner">
+            <div class="hero-badge">ENTC Engineering Workbench</div>
+            <h2 class="hero-title">Electronic Component Calculator</h2>
+            <p class="hero-subtitle">
+              Calculate electronic component values quickly and accurately. Designed for Electronics and Telecommunication Engineering students, lab sessions, circuit prototyping, and viva examinations.
+            </p>
+          </div>
+
+          <div class="section-heading">
+            <div>
+              <h2>Engineering Calculators</h2>
+              <p>Select a calculator module to begin calculations</p>
+            </div>
+          </div>
+
+          <div class="cards-grid">
+            <!-- Card 1: Resistor -->
+            <div class="calc-card">
+              <div class="calc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h3l2-4 3 8 3-8 3 8 2-4h4"/></svg>
+              </div>
+              <h3>Resistor Calculator</h3>
+              <p>Decode 4, 5, and 6-band color codes with live visual previews, tolerances, and unit conversion between Ω, kΩ, and MΩ.</p>
+              <button class="card-open-btn" data-target="view-resistor">
+                <span>Open Calculator</span>
+                <span>&rarr;</span>
+              </button>
+            </div>
+
+            <!-- Card 2: Capacitor -->
+            <div class="calc-card">
+              <div class="calc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="12" x2="10" y2="12"/><line x1="10" y1="5" x2="10" y2="19"/><line x1="14" y1="5" x2="14" y2="19"/><line x1="14" y1="12" x2="22" y2="12"/></svg>
+              </div>
+              <h3>Capacitor Calculator</h3>
+              <p>Convert 3-digit EIA capacitor codes (e.g. 104, 103, 472) into pF, nF, and µF with tolerances and reverse code generation.</p>
+              <button class="card-open-btn" data-target="view-capacitor">
+                <span>Open Calculator</span>
+                <span>&rarr;</span>
+              </button>
+            </div>
+
+            <!-- Card 3: LED Resistor -->
+            <div class="calc-card">
+              <div class="calc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="12" x2="8" y2="12"/><polygon points="8,6 8,18 16,12" fill="currentColor"/><line x1="16" y1="6" x2="16" y2="18"/><line x1="16" y1="12" x2="22" y2="12"/></svg>
+              </div>
+              <h3>LED Series Resistor</h3>
+              <p>Find the required current-limiting resistor, nearest standard E24 value, and power rating for single or multiple LEDs in series.</p>
+              <button class="card-open-btn" data-target="view-led">
+                <span>Open Calculator</span>
+                <span>&rarr;</span>
+              </button>
+            </div>
+
+            <!-- Card 4: Ohm's Law -->
+            <div class="calc-card">
+              <div class="calc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19h4c.5-2 1.5-4 4-4s3.5 2 4 4h4"/><path d="M8 15a6 6 0 1 1 8 0"/></svg>
+              </div>
+              <h3>Ohm's Law Calculator</h3>
+              <p>Calculate Voltage (V), Current (I), or Resistance (R) from any two known parameters with step-by-step substitution and power.</p>
+              <button class="card-open-btn" data-target="view-ohms-law">
+                <span>Open Calculator</span>
+                <span>&rarr;</span>
+              </button>
+            </div>
+
+            <!-- Card 5: Power Calculator -->
+            <div class="calc-card">
+              <div class="calc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <h3>DC Power Calculator</h3>
+              <p>Full 12-formula DC Power wheel: solve for Power, Voltage, Current, or Resistance given any 2 parameters.</p>
+              <button class="card-open-btn" data-target="view-power">
+                <span>Open Calculator</span>
+                <span>&rarr;</span>
+              </button>
+            </div>
+
+            <!-- Card 6: Voltage Divider -->
+            <div class="calc-card">
+              <div class="calc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="4" r="2"/><line x1="12" y1="6" x2="12" y2="8"/><rect x="9" y="8" width="6" height="4" rx="1"/><line x1="12" y1="12" x2="12" y2="14"/><rect x="9" y="14" width="6" height="4" rx="1"/><line x1="12" y1="18" x2="12" y2="20"/></svg>
+              </div>
+              <h3>Voltage Divider</h3>
+              <p>Compute output voltage, individual voltage drops, power dissipation, and load effect (RL) with live interactive circuit schematic.</p>
+              <button class="card-open-btn" data-target="view-divider">
+                <span>Open Calculator</span>
+                <span>&rarr;</span>
+              </button>
+            </div>
+
+            <!-- Card 7: Series & Parallel -->
+            <div class="calc-card">
+              <div class="calc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="3"/><line x1="6" y1="6" x2="6" y2="18"/><line x1="18" y1="6" x2="18" y2="18"/><line x1="6" y1="12" x2="18" y2="12"/></svg>
+              </div>
+              <h3>Series & Parallel Networks</h3>
+              <p>Calculate equivalent resistance for dynamic resistor arrays with optional voltage input to compute branch currents and drops.</p>
+              <button class="card-open-btn" data-target="view-series-parallel">
+                <span>Open Calculator</span>
+                <span>&rarr;</span>
+              </button>
+            </div>
+
+            <!-- Card 8: SMD Resistor -->
+            <div class="calc-card">
+              <div class="calc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="6" width="16" height="12" rx="2"/><rect x="2" y="9" width="2" height="6" fill="currentColor"/><rect x="20" y="9" width="2" height="6" fill="currentColor"/><line x1="8" y1="12" x2="16" y2="12" stroke-dasharray="2 2"/></svg>
+              </div>
+              <h3>SMD Resistor Calculator</h3>
+              <p>Decode 3-digit (5%), 4-digit (1%), and EIA-96 precision surface-mount resistor markings with realistic SMD chip visual.</p>
+              <button class="card-open-btn" data-target="view-smd">
+                <span>Open Calculator</span>
+                <span>&rarr;</span>
+              </button>
+            </div>
+
+            <!-- Card 9: 555 Timer & RC Filter -->
+            <div class="calc-card">
+              <div class="calc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/><path d="M9 2h6"/></svg>
+              </div>
+              <h3>555 Timer & RC Filter</h3>
+              <p>Calculate frequency, time periods, and duty cycle for 555 astable/monostable circuits and passive 1st-order RC filters.</p>
+              <button class="card-open-btn" data-target="view-timer">
+                <span>Open Calculator</span>
+                <span>&rarr;</span>
+              </button>
+            </div>
+
+            <!-- Card 10: Component Reference -->
+            <div class="calc-card">
+              <div class="calc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              </div>
+              <h3>Component Quick Guide</h3>
+              <p>ENTC quick reference covering Resistors, Capacitors, Inductors, Diodes, BJTs, MOSFETs, ICs, and Transformers with SVG symbols.</p>
+              <button class="card-open-btn" data-target="view-reference">
+                <span>Open Quick Guide</span>
+                <span>&rarr;</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- How to Use Section -->
+          <div class="guide-card">
+            <h3>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              How to Use This Electronic Component Calculator
+            </h3>
+            <div class="guide-steps">
+              <div class="guide-step">
+                <div class="guide-num">1</div>
+                <div class="guide-text">
+                  <h4>Select Calculator</h4>
+                  <p>Choose any calculator from the navigation sidebar or dashboard cards based on your circuit design task.</p>
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-num">2</div>
+                <div class="guide-text">
+                  <h4>Enter Circuit Values</h4>
+                  <p>Input values in standard engineering units (Ω, kΩ, MΩ, mA, V). Validations automatically prevent physical errors.</p>
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-num">3</div>
+                <div class="guide-text">
+                  <h4>Instant Results & Steps</h4>
+                  <p>Review engineering notation, standard commercial E24 ratings, power safety factors, and step-by-step formulas for viva.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =============================================================
+             VIEW 2: RESISTOR CALCULATOR
+             ============================================================= -->
+        <section class="calc-view" id="view-resistor">
+          <div class="calc-header">
+            <h2>Resistor Color Code & Value Calculator</h2>
+            <p>Determine resistance, tolerance, and temperature coefficient from color bands, or convert resistor values across units.</p>
+          </div>
+
+          <div class="calc-grid-layout">
+            <!-- Left Column: Inputs -->
+            <div>
+              <!-- Tab 1: Color Code -->
+              <div class="calc-panel">
+                <div class="panel-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h3l2-4 3 8 3-8 3 8 2-4h4"/></svg>
+                  <span>Resistor Color Band Calculator</span>
+                </div>
+
+                <!-- Band count selector -->
+                <div class="pill-group" id="resistorBandCountGroup">
+                  <button type="button" class="pill-btn active" data-bands="4">4-Band Resistor</button>
+                  <button type="button" class="pill-btn" data-bands="5">5-Band Resistor</button>
+                  <button type="button" class="pill-btn" data-bands="6">6-Band Resistor</button>
+                </div>
+
+                <!-- Visual Resistor Graphic -->
+                <div class="visual-container">
+                  <div class="resistor-graphic">
+                    <div class="resistor-lead"></div>
+                    <div class="resistor-body" id="resistorVisualBody">
+                      <div class="resistor-band" id="vBand1" style="background-color: #ffeb3b;" title="Band 1"></div>
+                      <div class="resistor-band" id="vBand2" style="background-color: #8e24aa;" title="Band 2"></div>
+                      <div class="resistor-band" id="vBand3" style="background-color: #e53935;" title="Band 3" style="display:none;"></div>
+                      <div class="resistor-band" id="vBandMult" style="background-color: #e53935;" title="Multiplier"></div>
+                      <div class="resistor-band tolerance-band" id="vBandTol" style="background-color: #d4af37;" title="Tolerance"></div>
+                      <div class="resistor-band" id="vBandTemp" style="background-color: #795548; display: none;" title="Temp Coeff"></div>
+                    </div>
+                    <div class="resistor-lead"></div>
+                  </div>
+                </div>
+
+                <!-- Band Color Selectors -->
+                <div class="band-selector-row">
+                  <div class="band-selector-col">
+                    <label for="resBand1Select">1st Digit</label>
+                    <select id="resBand1Select" class="color-select"></select>
+                  </div>
+                  <div class="band-selector-col">
+                    <label for="resBand2Select">2nd Digit</label>
+                    <select id="resBand2Select" class="color-select"></select>
+                  </div>
+                  <div class="band-selector-col" id="colBand3" style="display:none;">
+                    <label for="resBand3Select">3rd Digit</label>
+                    <select id="resBand3Select" class="color-select"></select>
+                  </div>
+                  <div class="band-selector-col">
+                    <label for="resBandMultSelect">Multiplier</label>
+                    <select id="resBandMultSelect" class="color-select"></select>
+                  </div>
+                  <div class="band-selector-col">
+                    <label for="resBandTolSelect">Tolerance</label>
+                    <select id="resBandTolSelect" class="color-select"></select>
+                  </div>
+                  <div class="band-selector-col" id="colBandTemp" style="display:none;">
+                    <label for="resBandTempSelect">Temp. Coeff.</label>
+                    <select id="resBandTempSelect" class="color-select"></select>
+                  </div>
+                </div>
+
+                <div class="calc-error-banner" id="resistorColorError"></div>
+
+                <div class="btn-group">
+                  <button type="button" class="btn-primary" id="btnCalcResColor">
+                    <span class="btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></span>
+                    <span>Calculate Color Code</span>
+                  </button>
+                  <button type="button" class="btn-secondary" id="btnResetResColor">
+                    <span>Reset</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Tab 2: Resistor Value Unit Converter (Req 6) -->
+              <div class="calc-panel">
+                <div class="panel-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19h4c.5-2 1.5-4 4-4s3.5 2 4 4h4"/></svg>
+                  <span>Resistor Value Converter (Ω, kΩ, MΩ)</span>
+                </div>
+
+                <div class="form-group">
+                  <label for="resValInput">
+                    <span>Resistance Value</span>
+                    <span class="label-hint">Enter numerical value</span>
+                  </label>
+                  <div class="input-with-unit">
+                    <input type="number" step="any" id="resValInput" class="form-control" placeholder="e.g. 4.7" value="4.7">
+                    <select id="resValUnitSelect" class="unit-select">
+                      <option value="Ω">Ω (Ohms)</option>
+                      <option value="kΩ" selected>kΩ (Kilo-ohms)</option>
+                      <option value="MΩ">MΩ (Mega-ohms)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="calc-error-banner" id="resistorValueError"></div>
+
+                <div class="btn-group">
+                  <button type="button" class="btn-primary" id="btnCalcResVal">
+                    <span class="btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></span>
+                    <span>Convert Value</span>
+                  </button>
+                  <button type="button" class="btn-secondary" id="btnResetResVal">
+                    <span>Reset</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Results & Formulas -->
+            <div>
+              <div class="result-card" id="resistorResultCard">
+                <div class="result-header">
+                  <span class="result-title">Color Code Result</span>
+                  <button type="button" class="copy-btn" id="btnCopyResResult" title="Copy to clipboard">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    <span>Copy</span>
+                  </button>
+                </div>
+
+                <div class="primary-result-box">
+                  <div>
+                    <div style="font-size:0.75rem; color:var(--text-dim); text-transform:uppercase; margin-bottom:4px;">Nominal Resistance</div>
+                    <div class="result-val-large" id="resResultValue">4.7 kΩ</div>
+                  </div>
+                  <span class="result-tag-badge" id="resResultTolBadge">±5%</span>
+                </div>
+
+                <div class="metrics-grid">
+                  <div class="metric-item">
+                    <div class="metric-label">Resistance in Base Ω</div>
+                    <div class="metric-value" id="resResultBase">4,700 Ω</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">Tolerance Range</div>
+                    <div class="metric-value" id="resResultRange">4.465 kΩ – 4.935 kΩ</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">Minimum Value</div>
+                    <div class="metric-value" id="resResultMin">4.465 kΩ</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">Maximum Value</div>
+                    <div class="metric-value" id="resResultMax">4.935 kΩ</div>
+                  </div>
+                </div>
+
+                <div class="metric-item" id="resTempCoeffRow" style="display:none; margin-bottom:18px;">
+                  <div class="metric-label">Temperature Coefficient</div>
+                  <div class="metric-value text-cyan" id="resResultTemp">100 ppm/K</div>
+                </div>
+
+                <!-- Resistor Value Conversion outputs -->
+                <div class="metric-item" id="resConverterOutputs" style="display:none; margin-bottom:18px;">
+                  <div class="metric-label">Unit Conversions</div>
+                  <div style="font-family:var(--font-mono); font-size:0.88rem; line-height:1.7; margin-top:4px;">
+                    <div>• <strong>Ohms (Ω):</strong> <span id="resOutOhms">4700</span> Ω</div>
+                    <div>• <strong>Kilo-ohms (kΩ):</strong> <span id="resOutKilo">4.7</span> kΩ</div>
+                    <div>• <strong>Mega-ohms (MΩ):</strong> <span id="resOutMega">0.0047</span> MΩ</div>
+                    <div>• <strong>Nearest Standard E24:</strong> <span class="text-green" id="resOutE24">4.7 kΩ</span></div>
+                  </div>
+                </div>
+
+                <!-- Explanation Panel -->
+                <div class="explanation-panel">
+                  <div class="explanation-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    <span>Calculation Formula & Steps</span>
+                  </div>
+                  <div class="explanation-steps" id="resResultExplanation">
+                    Resistance = (47) × 10^2 = 4.7 kΩ ±5%
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =============================================================
+             VIEW 3: CAPACITOR CALCULATOR
+             ============================================================= -->
+        <section class="calc-view" id="view-capacitor">
+          <div class="calc-header">
+            <h2>Capacitor Code & Value Calculator</h2>
+            <p>Convert 3-digit EIA ceramic and film capacitor codes into pF, nF, and µF, or calculate reverse codes from capacitance.</p>
+          </div>
+
+          <div class="calc-grid-layout">
+            <div>
+              <!-- 3-digit Code Decoder -->
+              <div class="calc-panel">
+                <div class="panel-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="12" x2="10" y2="12"/><line x1="10" y1="5" x2="10" y2="19"/><line x1="14" y1="5" x2="14" y2="19"/><line x1="14" y1="12" x2="22" y2="12"/></svg>
+                  <span>Decode 3-Digit Capacitor Code</span>
+                </div>
+
+                <!-- Ceramic Capacitor Graphic -->
+                <div class="visual-container">
+                  <div class="capacitor-graphic">
+                    <div class="cap-disc-body">
+                      <span class="cap-code-text" id="capVisualCode">104</span>
+                      <span class="cap-tol-text" id="capVisualTol">±10% (K)</span>
+                    </div>
+                    <div class="cap-leads">
+                      <div class="cap-lead-wire"></div>
+                      <div class="cap-lead-wire"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="presets-container">
+                  <span style="font-size:0.75rem; color:var(--text-dim); margin-right:4px;">Quick Examples:</span>
+                  <button type="button" class="preset-chip" data-capcode="104">104 (100 nF)</button>
+                  <button type="button" class="preset-chip" data-capcode="103">103 (10 nF)</button>
+                  <button type="button" class="preset-chip" data-capcode="102">102 (1 nF)</button>
+                  <button type="button" class="preset-chip" data-capcode="473">473 (47 nF)</button>
+                  <button type="button" class="preset-chip" data-capcode="220">220 (22 pF)</button>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="capCodeInput">
+                      <span>3-Digit Capacitor Code</span>
+                      <span class="label-hint">e.g. 104, 103, 472</span>
+                    </label>
+                    <input type="text" id="capCodeInput" class="form-control" placeholder="e.g. 104" value="104" maxlength="5">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="capTolSelect">
+                      <span>Tolerance Letter (Optional)</span>
+                    </label>
+                    <select id="capTolSelect" class="form-control">
+                      <option value="">None (Standard ±20%)</option>
+                      <option value="J">J (±5%)</option>
+                      <option value="K" selected>K (±10%)</option>
+                      <option value="M">M (±20%)</option>
+                      <option value="F">F (±1%)</option>
+                      <option value="G">G (±2%)</option>
+                      <option value="Z">Z (+80% / -20%)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="calc-error-banner" id="capDecodeError"></div>
+
+                <div class="btn-group">
+                  <button type="button" class="btn-primary" id="btnCalcCapCode">
+                    <span class="btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></span>
+                    <span>Calculate Capacitance</span>
+                  </button>
+                  <button type="button" class="btn-secondary" id="btnResetCapCode">
+                    <span>Reset</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Reverse Code Calculator -->
+              <div class="calc-panel">
+                <div class="panel-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  <span>Reverse: Capacitance to 3-Digit Code</span>
+                </div>
+
+                <div class="form-group">
+                  <label for="capReverseValInput">
+                    <span>Capacitance Value</span>
+                    <span class="label-hint">Enter target capacitance</span>
+                  </label>
+                  <div class="input-with-unit">
+                    <input type="number" step="any" id="capReverseValInput" class="form-control" placeholder="e.g. 100" value="100">
+                    <select id="capReverseUnitSelect" class="unit-select">
+                      <option value="pF">pF (Picofarads)</option>
+                      <option value="nF" selected>nF (Nanofarads)</option>
+                      <option value="µF">µF (Microfarads)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="calc-error-banner" id="capReverseError"></div>
+
+                <div class="btn-group">
+                  <button type="button" class="btn-primary" id="btnCalcCapReverse">
+                    <span class="btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></span>
+                    <span>Generate Capacitor Code</span>
+                  </button>
+                  <button type="button" class="btn-secondary" id="btnResetCapReverse">
+                    <span>Reset</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Results -->
+            <div>
+              <div class="result-card" id="capResultCard">
+                <div class="result-header">
+                  <span class="result-title">Capacitor Result</span>
+                  <button type="button" class="copy-btn" id="btnCopyCapResult">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    <span>Copy</span>
+                  </button>
+                </div>
+
+                <div class="primary-result-box">
+                  <div>
+                    <div style="font-size:0.75rem; color:var(--text-dim); text-transform:uppercase; margin-bottom:4px;">SI Value</div>
+                    <div class="result-val-large" id="capResultSI">100 nF</div>
+                  </div>
+                  <span class="result-tag-badge" id="capResultTol">±10%</span>
+                </div>
+
+                <div class="metrics-grid">
+                  <div class="metric-item">
+                    <div class="metric-label">Picofarads (pF)</div>
+                    <div class="metric-value" id="capResultPf">100,000 pF</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">Nanofarads (nF)</div>
+                    <div class="metric-value" id="capResultNf">100 nF</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">Microfarads (µF)</div>
+                    <div class="metric-value" id="capResultUf">0.1 µF</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">Capacitor Code</div>
+                    <div class="metric-value text-cyan" id="capResultCodeDisplay">104K</div>
+                  </div>
+                </div>
+
+                <div class="explanation-panel">
+                  <div class="explanation-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    <span>Conversion Explanation</span>
+                  </div>
+                  <div class="explanation-steps" id="capResultExplanation">
+                    1st & 2nd digits (10) × Multiplier (10^4 = 10,000) = 100,000 pF<br>
+                    • Convert to nF: 100,000 pF ÷ 1,000 = 100 nF<br>
+                    • Convert to µF: 100,000 pF ÷ 1,000,000 = 0.1 µF
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =============================================================
+             VIEW 4: LED SERIES RESISTOR CALCULATOR
+             ============================================================= -->
+        <section class="calc-view" id="view-led">
+          <div class="calc-header">
+            <h2>LED Series Resistor Calculator</h2>
+            <p>Calculate current-limiting resistor, standard commercial value, and power rating required for safe LED operation.</p>
+          </div>
+
+          <div class="calc-grid-layout">
+            <div>
+              <div class="calc-panel">
+                <div class="panel-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="12" x2="8" y2="12"/><polygon points="8,6 8,18 16,12" fill="currentColor"/><line x1="16" y1="6" x2="16" y2="18"/></svg>
+                  <span>LED Circuit Parameters</span>
+                </div>
+
+                <!-- Presets for LED colors -->
+                <div class="presets-container">
+                  <span style="font-size:0.75rem; color:var(--text-dim); margin-right:4px;">LED Presets:</span>
+                  <button type="button" class="preset-chip" data-led="red">Red (2.0V, 20mA)</button>
+                  <button type="button" class="preset-chip" data-led="green">Green (2.2V, 20mA)</button>
+                  <button type="button" class="preset-chip" data-led="blue">Blue (3.2V, 20mA)</button>
+                  <button type="button" class="preset-chip" data-led="white">White (3.2V, 20mA)</button>
+                  <button type="button" class="preset-chip" data-led="yellow">Yellow (2.1V, 20mA)</button>
+                  <button type="button" class="preset-chip" data-led="uv">UV (3.4V, 20mA)</button>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="ledSupplyVolt">
+                      <span>Supply Voltage (V_supply)</span>
+                      <span class="label-hint">Volts</span>
+                    </label>
+                    <div class="input-with-unit">
+                      <input type="number" step="any" id="ledSupplyVolt" class="form-control" placeholder="e.g. 5" value="5">
+                      <span style="padding:10px 14px; background:var(--bg-card-subtle); border-left:1px solid var(--border-color); font-weight:600;">V</span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="ledForwardVolt">
+                      <span>LED Forward Voltage (V_LED)</span>
+                      <span class="label-hint">Volts</span>
+                    </label>
+                    <div class="input-with-unit">
+                      <input type="number" step="any" id="ledForwardVolt" class="form-control" placeholder="e.g. 2.0" value="2.0">
+                      <span style="padding:10px 14px; background:var(--bg-card-subtle); border-left:1px solid var(--border-color); font-weight:600;">V</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="ledCurrent">
+                      <span>LED Desired Current (I_LED)</span>
+                      <span class="label-hint">Milliamperes</span>
+                    </label>
+                    <div class="input-with-unit">
+                      <input type="number" step="any" id="ledCurrent" class="form-control" placeholder="e.g. 20" value="20">
+                      <span style="padding:10px 14px; background:var(--bg-card-subtle); border-left:1px solid var(--border-color); font-weight:600;">mA</span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="ledCountInput">
+                      <span>LEDs in Series</span>
+                      <span class="label-hint">Quantity</span>
+                    </label>
+                    <input type="number" min="1" step="1" id="ledCountInput" class="form-control" value="1">
+                  </div>
+                </div>
+
+                <div class="calc-error-banner" id="ledCalcError"></div>
+
+                <div class="btn-group">
+                  <button type="button" class="btn-primary" id="btnCalcLed">
+                    <span class="btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></span>
+                    <span>Calculate Resistor</span>
+                  </button>
+                  <button type="button" class="btn-secondary" id="btnResetLed">
+                    <span>Reset</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- LED Circuit Diagram -->
+              <div class="calc-panel">
+                <div class="panel-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="3"/></svg>
+                  <span>Circuit Schematic</span>
+                </div>
+                <div class="schematic-svg-box">
+                  <svg viewBox="0 0 360 110" style="width:100%; height:auto;">
+                    <!-- Supply node -->
+                    <circle cx="30" cy="55" r="5" fill="#38bdf8"/>
+                    <text x="30" y="35" text-anchor="middle" fill="var(--text-main)" font-size="12" font-weight="bold">+Vs (5V)</text>
+                    <line x1="35" y1="55" x2="80" y2="55" class="wire-current" stroke="#38bdf8" stroke-width="2.5"/>
+                    <!-- Resistor -->
+                    <path d="M 80 55 L 90 45 L 105 65 L 120 45 L 135 65 L 150 45 L 160 55" fill="none" stroke="#f59e0b" stroke-width="3"/>
+                    <text x="120" y="32" text-anchor="middle" fill="#f59e0b" font-size="12" font-weight="bold" id="schematicResVal">150 Ω</text>
+                    <line x1="160" y1="55" x2="210" y2="55" class="wire-current" stroke="#38bdf8" stroke-width="2.5"/>
+                    <!-- LED -->
+                    <polygon points="210,40 210,70 240,55" fill="#ef4444"/>
+                    <line x1="240" y1="40" x2="240" y2="70" stroke="var(--text-main)" stroke-width="3"/>
+                    <line x1="230" y1="40" x2="245" y2="28" stroke="#ef4444" stroke-width="2"/>
+                    <line x1="240" y1="44" x2="255" y2="32" stroke="#ef4444" stroke-width="2"/>
+                    <text x="225" y="88" text-anchor="middle" fill="var(--text-muted)" font-size="11">LED (Vf=2V)</text>
+                    <!-- GND -->
+                    <line x1="240" y1="55" x2="310" y2="55" class="wire-current" stroke="#38bdf8" stroke-width="2.5"/>
+                    <line x1="310" y1="45" x2="310" y2="65" stroke="var(--text-main)" stroke-width="2.5"/>
+                    <line x1="318" y1="50" x2="318" y2="60" stroke="var(--text-main)" stroke-width="2.5"/>
+                    <line x1="326" y1="53" x2="326" y2="57" stroke="var(--text-main)" stroke-width="2.5"/>
+                    <text x="320" y="80" text-anchor="middle" fill="var(--text-dim)" font-size="11">GND</text>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Results -->
+            <div>
+              <div class="result-card" id="ledResultCard">
+                <div class="result-header">
+                  <span class="result-title">LED Calculation Result</span>
+                  <button type="button" class="copy-btn" id="btnCopyLedResult">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    <span>Copy</span>
+                  </button>
+                </div>
+
+                <div class="primary-result-box">
+                  <div>
+                    <div style="font-size:0.75rem; color:var(--text-dim); text-transform:uppercase; margin-bottom:4px;">Calculated Resistor</div>
+                    <div class="result-val-large" id="ledResultOhms">150 Ω</div>
+                  </div>
+                  <span class="result-tag-badge">Exact Match</span>
+                </div>
+
+                <div class="metrics-grid">
+                  <div class="metric-item">
+                    <div class="metric-label">Recommended E24 Resistor</div>
+                    <div class="metric-value text-cyan" id="ledResultStandard">150 Ω</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">Resistor Power Dissipation</div>
+                    <div class="metric-value" id="ledResultPower">60 mW</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">Recommended Resistor Rating</div>
+                    <div class="metric-value text-green" id="ledResultWattage">1/4 W (0.25 W)</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">Actual Current with E24</div>
+                    <div class="metric-value" id="ledResultActualCurrent">20.0 mA</div>
+                  </div>
+                </div>
+
+                <div class="explanation-panel">
+                  <div class="explanation-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    <span>Step-by-Step Calculation Steps</span>
+                  </div>
+                  <div class="explanation-steps" id="ledResultExplanation">
+                    1. Resistor Voltage Drop: V_R = 5 V - 2 V = 3 V<br>
+                    2. Resistor Value: R = 3 V / 0.02 A = 150 Ω<br>
+                    3. Power: P = 3 V × 0.02 A = 60 mW
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =============================================================
+             VIEW 5: OHM'S LAW CALCULATOR
+             ============================================================= -->
+        <section class="calc-view" id="view-ohms-law">
+          <div class="calc-header">
+            <h2>Ohm's Law Calculator</h2>
+            <p>Enter any two parameters among Voltage (V), Current (I), and Resistance (R). The calculator computes the third along with circuit Power (P).</p>
+          </div>
+
+          <div class="calc-grid-layout">
+            <div>
+              <div class="calc-panel">
+                <div class="panel-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19h4c.5-2 1.5-4 4-4s3.5 2 4 4h4"/></svg>
+                  <span>Input Any 2 Known Values</span>
+                </div>
+
+                <!-- Voltage Input -->
+                <div class="form-group">
+                  <label for="ohmsVoltInput">
+                    <span>Voltage (V)</span>
+                    <span class="label-hint">Leave blank if unknown</span>
+                  </label>
+                  <div class="input-with-unit">
+                    <input type="number" step="any" id="ohmsVoltInput" class="form-control" placeholder="e.g. 12" value="12">
+                    <select id="ohmsVoltUnit" class="unit-select">
+                      <option value="mV">mV</option>
+                      <option value="V" selected>V</option>
+                      <option value="kV">kV</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Current Input -->
+                <div class="form-group">
+                  <label for="ohmsCurrentInput">
+                    <span>Current (I)</span>
+                    <span class="label-hint">Leave blank if unknown</span>
+                  </label>
+                  <div class="input-with-unit">
+                    <input type="number" step="any" id="ohmsCurrentInput" class="form-control" placeholder="e.g. 2">
+                    <select id="ohmsCurrentUnit" class="unit-select">
+                      <option value="µA">µA</option>
+                      <option value="mA">mA</option>
+                      <option value="A" selected>A</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Resistance Input -->
+                <div class="form-group">
+                  <label for="ohmsResInput">
+                    <span>Resistance (R)</span>
+                    <span class="label-hint">Leave blank if unknown</span>
+                  </label>
+                  <div class="input-with-unit">
+                    <input type="number" step="any" id="ohmsResInput" class="form-control" placeholder="e.g. 6" value="6">
+                    <select id="ohmsResUnit" class="unit-select">
+                      <option value="Ω" selected>Ω</option>
+                      <option value="kΩ">kΩ</option>
+                      <option value="MΩ">MΩ</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="calc-error-banner" id="ohmsCalcError"></div>
+
+                <div class="btn-group">
+                  <button type="button" class="btn-primary" id="btnCalcOhms">
+                    <span class="btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></span>
+                    <span>Calculate Missing Value</span>
+                  </button>
+                  <button type="button" class="btn-secondary" id="btnResetOhms">
+                    <span>Reset</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Results -->
+            <div>
+              <div class="result-card" id="ohmsResultCard">
+                <div class="result-header">
+                  <span class="result-title">Ohm's Law Result</span>
+                  <button type="button" class="copy-btn" id="btnCopyOhmsResult">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    <span>Copy</span>
+                  </button>
+                </div>
+
+                <div class="primary-result-box">
+                  <div>
+                    <div style="font-size:0.75rem; color:var(--text-dim); text-transform:uppercase; margin-bottom:4px;" id="ohmsSolvedLabel">Calculated Current (I)</div>
+                    <div class="result-val-large" id="ohmsSolvedValue">2 A</div>
+                  </div>
+                  <span class="result-tag-badge" id="ohmsFormulaBadge">I = V / R</span>
+                </div>
+
+                <div class="metrics-grid">
+                  <div class="metric-item">
+                    <div class="metric-label">Voltage (V)</div>
+                    <div class="metric-value" id="ohmsResV">12 V</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">Current (I)</div>
+                    <div class="metric-value" id="ohmsResI">2 A</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">Resistance (R)</div>
+                    <div class="metric-value" id="ohmsResR">6 Ω</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">Power Dissipation (P)</div>
+                    <div class="metric-value text-green" id="ohmsResP">24 W</div>
+                  </div>
+                </div>
+
+                <div class="explanation-panel">
+                  <div class="explanation-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    <span>Calculation Steps</span>
+                  </div>
+                  <div class="explanation-steps" id="ohmsResultExplanation">
+                    Formula: I = V / R<br>
+                    Given: V = 12 V, R = 6 Ω<br>
+                    Calculation: I = 12 V / 6 Ω = 2 A<br>
+                    Power: P = V × I = 12 V × 2 A = 24 W
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =============================================================
+             VIEW 6: POWER CALCULATOR
+             ============================================================= -->
+        <section class="calc-view" id="view-power">
+          <div class="calc-header">
+            <h2>DC Power & Ohm's Wheel Calculator</h2>
+            <p>Compute electrical power and circuit parameters using P = V×I, P = I²R, and P = V²/R. Enter any 2 known values.</p>
+          </div>
+
+          <div class="calc-grid-layout">
+            <div>
+              <div class="calc-panel">
+                <div class="panel-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  <span>Enter Any Two Parameters</span>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="powerVoltInput">
+                      <span>Voltage (V)</span>
+                    </label>
+                    <div class="input-with-unit">
+                      <input type="number" step="any" id="powerVoltInput" class="form-control" placeholder="Leave empty if unknown" value="12">
+                      <select id="powerVoltUnit" class="unit-select">
+                        <option value="mV">mV</option>
+                        <option value="V" selected>V</option>
+                        <option value="kV">kV</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="powerCurrentInput">
+                      <span>Current (I)</span>
+                    </label>
+                    <div class="input-with-unit">
+                      <input type="number" step="any" id="powerCurrentInput" class="form-control" placeholder="Leave empty if unknown" value="2">
+                      <select id="powerCurrentUnit" class="unit-select">
+                        <option value="µA">µA</option>
+                        <option value="mA">mA</option>
+                        <option value="A" selected>A</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="powerResInput">
+                      <span>Resistance (R)</span>
+                    </label>
+                    <div class="input-with-unit">
+                      <input type="number" step="any" id="powerResInput" class="form-control" placeholder="Leave empty if unknown">
+                      <select id="powerResUnit" class="unit-select">
+                        <option value="Ω" selected>Ω</option>
+                        <option value="kΩ">kΩ</option>
+                        <option value="MΩ">MΩ</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="powerWattInput">
+                      <span>Power (P)</span>
+                    </label>
+                    <div class="input-with-unit">
+                      <input type="number" step="any" id="powerWattInput" class="form-control" placeholder="Leave empty if unknown">
+                      <select id="powerWattUnit" class="unit-select">
+                        <option value="mW">mW</option>
+                        <option value="W" selected>W</option>
+                        <option value="kW">kW</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="calc-error-banner" id="powerCalcError"></div>
+
+                <div class="btn-group">
+                  <button type="button" class="btn-primary" id="btnCalcPower">
+                    <span class="btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></span>
+                    <span>Calculate Parameters</span>
+                  </button>
+                  <button type="button" class="btn-secondary" id="btnResetPower">
+                    <span>Reset</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Results -->
+            <div>
+              <div class="result-card" id="powerResultCard">
+                <div class="result-header">
+                  <span class="result-title">Power Calculation Result</span>
+                  <button type="button" class="copy-btn" id="btnCopyPowerResult">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    <span>Copy</span>
+                  </button>
+                </div>
+
+                <div class="primary-result-box">
+                  <div>
+                    <div style="font-size:0.75rem; color:var(--text-dim); text-transform:uppercase; margin-bottom:4px;">Electrical Power (P)</div>
+                    <div class="result-val-large" id="powerResVal">24 W</div>
+                  </div>
+                  <span class="result-tag-badge">P = V × I</span>
+                </div>
+
+                <div class="metrics-grid">
+                  <div class="metric-item">
+                    <div class="metric-label">Voltage (V)</div>
+                    <div class="metric-value" id="powerOutV">12 V</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">Current (I)</div>
+                    <div class="metric-value" id="powerOutI">2 A</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">Resistance (R)</div>
+                    <div class="metric-value" id="powerOutR">6 Ω</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">Recommended Resistor Rating</div>
+                    <div class="metric-value text-green" id="powerOutWattage">50 W</div>
+                  </div>
+                </div>
+
+                <div class="explanation-panel">
+                  <div class="explanation-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    <span>Formulas Applied</span>
+                  </div>
+                  <div class="explanation-steps" id="powerResultExplanation">
+                    P = V × I = 12 V × 2 A = 24 W<br>
+                    R = V / I = 12 V / 2 A = 6 Ω
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =============================================================
+             VIEW 7: VOLTAGE DIVIDER CALCULATOR
+             ============================================================= -->
+        <section class="calc-view" id="view-divider">
+          <div class="calc-header">
+            <h2>Voltage Divider Calculator</h2>
+            <p>Compute output voltage, branch currents, individual resistor drops, and loading effect for unloaded or loaded dividers.</p>
+          </div>
+
+          <div class="calc-grid-layout">
+            <div>
+              <div class="calc-panel">
+                <div class="panel-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="4" r="2"/><line x1="12" y1="6" x2="12" y2="8"/><rect x="9" y="8" width="6" height="4" rx="1"/><line x1="12" y1="12" x2="12" y2="14"/><rect x="9" y="14" width="6" height="4" rx="1"/></svg>
+                  <span>Divider Inputs</span>
+                </div>
+
+                <div class="form-group">
+                  <label for="divVinInput">
+                    <span>Input Voltage (V_in)</span>
+                  </label>
+                  <div class="input-with-unit">
+                    <input type="number" step="any" id="divVinInput" class="form-control" placeholder="e.g. 10" value="10">
+                    <select id="divVinUnit" class="unit-select">
+                      <option value="mV">mV</option>
+                      <option value="V" selected>V</option>
+                      <option value="kV">kV</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="divR1Input">
+                      <span>Resistor R1 (Top)</span>
+                    </label>
+                    <div class="input-with-unit">
+                      <input type="number" step="any" id="divR1Input" class="form-control" placeholder="e.g. 10" value="10">
+                      <select id="divR1Unit" class="unit-select">
+                        <option value="Ω">Ω</option>
+                        <option value="kΩ" selected>kΩ</option>
+                        <option value="MΩ">MΩ</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="divR2Input">
+                      <span>Resistor R2 (Bottom)</span>
+                    </label>
+                    <div class="input-with-unit">
+                      <input type="number" step="any" id="divR2Input" class="form-control" placeholder="e.g. 10" value="10">
+                      <select id="divR2Unit" class="unit-select">
+                        <option value="Ω">Ω</option>
+                        <option value="kΩ" selected>kΩ</option>
+                        <option value="MΩ">MΩ</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Optional Load Resistor RL -->
+                <div class="form-group">
+                  <label for="divRlInput">
+                    <span>Load Resistor R_L (Optional for Loaded Divider)</span>
+                    <span class="label-hint">Leave blank for unloaded</span>
+                  </label>
+                  <div class="input-with-unit">
+                    <input type="number" step="any" id="divRlInput" class="form-control" placeholder="Optional (e.g. 100)">
+                    <select id="divRlUnit" class="unit-select">
+                      <option value="Ω">Ω</option>
+                      <option value="kΩ" selected>kΩ</option>
+                      <option value="MΩ">MΩ</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="calc-error-banner" id="divCalcError"></div>
+
+                <div class="btn-group">
+                  <button type="button" class="btn-primary" id="btnCalcDivider">
+                    <span class="btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></span>
+                    <span>Calculate Divider</span>
+                  </button>
+                  <button type="button" class="btn-secondary" id="btnResetDivider">
+                    <span>Reset</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Interactive Circuit Schematic -->
+              <div class="calc-panel">
+                <div class="panel-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="3"/></svg>
+                  <span>Voltage Divider Circuit Schematic</span>
+                </div>
+                <div class="schematic-svg-box">
+                  <svg viewBox="0 0 320 220" style="width:100%; height:auto;">
+                    <!-- Vin Node -->
+                    <circle cx="100" cy="20" r="4" fill="#38bdf8"/>
+                    <text x="100" y="12" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="bold" id="diagVin">Vin = 10 V</text>
+                    <line x1="100" y1="20" x2="100" y2="40" class="wire-current" stroke="#38bdf8" stroke-width="2.5"/>
+                    
+                    <!-- R1 -->
+                    <rect x="85" y="40" width="30" height="45" rx="3" fill="var(--bg-input)" stroke="#38bdf8" stroke-width="2"/>
+                    <text x="130" y="65" fill="var(--text-main)" font-size="11" font-weight="bold" id="diagR1">R1: 10 kΩ</text>
+                    <line x1="100" y1="85" x2="100" y2="125" class="wire-current" stroke="#38bdf8" stroke-width="2.5"/>
+
+                    <!-- Vout Node -->
+                    <circle cx="100" cy="105" r="4.5" fill="#10b981"/>
+                    <line x1="100" y1="105" x2="190" y2="105" class="wire-current" stroke="#10b981" stroke-width="2.5"/>
+                    <circle cx="190" cy="105" r="4" fill="#10b981"/>
+                    <text x="210" y="110" fill="#10b981" font-size="12" font-weight="bold" id="diagVout">Vout = 5 V</text>
+
+                    <!-- R2 -->
+                    <rect x="85" y="125" width="30" height="45" rx="3" fill="var(--bg-input)" stroke="#38bdf8" stroke-width="2"/>
+                    <text x="130" y="150" fill="var(--text-main)" font-size="11" font-weight="bold" id="diagR2">R2: 10 kΩ</text>
+                    <line x1="100" y1="170" x2="100" y2="195" class="wire-current" stroke="#38bdf8" stroke-width="2.5"/>
+
+                    <!-- Ground -->
+                    <line x1="85" y1="195" x2="115" y2="195" stroke="var(--text-main)" stroke-width="2.5"/>
+                    <line x1="90" y1="200" x2="110" y2="200" stroke="var(--text-main)" stroke-width="2"/>
+                    <line x1="95" y1="205" x2="105" y2="205" stroke="var(--text-main)" stroke-width="1.5"/>
+                    <text x="100" y="217" text-anchor="middle" fill="var(--text-dim)" font-size="10">GND (0V)</text>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Results -->
+            <div>
+              <div class="result-card" id="divResultCard">
+                <div class="result-header">
+                  <span class="result-title">Divider Results</span>
+                  <button type="button" class="copy-btn" id="btnCopyDivResult">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    <span>Copy</span>
+                  </button>
+                </div>
+
+                <div class="primary-result-box">
+                  <div>
+                    <div style="font-size:0.75rem; color:var(--text-dim); text-transform:uppercase; margin-bottom:4px;">Output Voltage (V_out)</div>
+                    <div class="result-val-large" id="divResultVout">5 V</div>
+                  </div>
+                  <span class="result-tag-badge" id="divResultRatio">Ratio: 0.50 (50%)</span>
+                </div>
+
+                <div class="metrics-grid">
+                  <div class="metric-item">
+                    <div class="metric-label">Divider Current (I)</div>
+                    <div class="metric-value" id="divResultCurrent">500 µA</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">Total Resistance</div>
+                    <div class="metric-value" id="divResultRtotal">20 kΩ</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">R1 Voltage Drop</div>
+                    <div class="metric-value" id="divResultDropR1">5 V</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">R2 Voltage Drop</div>
+                    <div class="metric-value" id="divResultDropR2">5 V</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">R1 Power Dissipation</div>
+                    <div class="metric-value" id="divResultPowerR1">2.5 mW</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">R2 Power Dissipation</div>
+                    <div class="metric-value" id="divResultPowerR2">2.5 mW</div>
+                  </div>
+                </div>
+
+                <div class="explanation-panel">
+                  <div class="explanation-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    <span>Calculation Formula & Steps</span>
+                  </div>
+                  <div class="explanation-steps" id="divResultExplanation">
+                    Vout = Vin × [R2 / (R1 + R2)]<br>
+                    Vout = 10 V × [10,000 / 20,000] = 5 V<br>
+                    Current I = 10 V / 20,000 Ω = 0.5 mA (500 µA)
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =============================================================
+             VIEW 8: SERIES & PARALLEL CALCULATOR
+             ============================================================= -->
+        <section class="calc-view" id="view-series-parallel">
+          <div class="calc-header">
+            <h2>Series and Parallel Resistor Calculator</h2>
+            <p>Dynamically add or remove resistors to calculate equivalent resistance, total current, and individual branch drops.</p>
+          </div>
+
+          <div class="calc-grid-layout">
+            <div>
+              <div class="calc-panel">
+                <!-- Mode Selector -->
+                <div class="pill-group" id="networkModeGroup">
+                  <button type="button" class="pill-btn active" data-mode="series">Series Network (R1 + R2 + ...)</button>
+                  <button type="button" class="pill-btn" data-mode="parallel">Parallel Network (1/R1 + 1/R2 + ...)</button>
+                </div>
+
+                <div class="panel-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="3"/><line x1="6" y1="6" x2="6" y2="18"/><line x1="18" y1="6" x2="18" y2="18"/><line x1="6" y1="12" x2="18" y2="12"/></svg>
+                  <span id="networkTitle">Series Resistors List</span>
+                </div>
+
+                <!-- Dynamic Rows Container -->
+                <div class="resistor-rows-list" id="resistorRowsList">
+                  <!-- Row 1 -->
+                  <div class="resistor-input-row">
+                    <span class="resistor-row-label">R1</span>
+                    <input type="number" step="any" class="resistor-row-val" placeholder="Value" value="100">
+                    <select class="unit-select row-unit">
+                      <option value="Ω" selected>Ω</option>
+                      <option value="kΩ">kΩ</option>
+                      <option value="MΩ">MΩ</option>
+                    </select>
+                    <button type="button" class="row-delete-btn" title="Remove Resistor" style="visibility:hidden;">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
+                  </div>
+                  <!-- Row 2 -->
+                  <div class="resistor-input-row">
+                    <span class="resistor-row-label">R2</span>
+                    <input type="number" step="any" class="resistor-row-val" placeholder="Value" value="200">
+                    <select class="unit-select row-unit">
+                      <option value="Ω" selected>Ω</option>
+                      <option value="kΩ">kΩ</option>
+                      <option value="MΩ">MΩ</option>
+                    </select>
+                    <button type="button" class="row-delete-btn" title="Remove Resistor">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Add Resistor & Presets -->
+                <div class="presets-container" style="margin-bottom:18px;">
+                  <button type="button" class="btn-secondary" id="btnAddResistorRow" style="padding:6px 14px; font-size:0.82rem;">
+                    + Add Resistor
+                  </button>
+                  <button type="button" class="preset-chip" id="btnPreset2Res">2 Resistors</button>
+                  <button type="button" class="preset-chip" id="btnPreset3Res">3 Resistors</button>
+                  <button type="button" class="preset-chip" id="btnPreset4Res">4 Resistors</button>
+                </div>
+
+                <!-- Optional Circuit Supply Voltage -->
+                <div class="form-group">
+                  <label for="networkVoltSupply">
+                    <span>Optional Circuit Voltage (V_supply)</span>
+                    <span class="label-hint">Calculates branch currents & drops</span>
+                  </label>
+                  <div class="input-with-unit">
+                    <input type="number" step="any" id="networkVoltSupply" class="form-control" placeholder="Optional (e.g. 12)">
+                    <select id="networkVoltUnit" class="unit-select">
+                      <option value="mV">mV</option>
+                      <option value="V" selected>V</option>
+                      <option value="kV">kV</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="calc-error-banner" id="networkCalcError"></div>
+
+                <div class="btn-group">
+                  <button type="button" class="btn-primary" id="btnCalcNetwork">
+                    <span class="btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></span>
+                    <span>Calculate Network</span>
+                  </button>
+                  <button type="button" class="btn-secondary" id="btnResetNetwork">
+                    <span>Reset</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Results -->
+            <div>
+              <div class="result-card" id="networkResultCard">
+                <div class="result-header">
+                  <span class="result-title">Network Equivalent Result</span>
+                  <button type="button" class="copy-btn" id="btnCopyNetworkResult">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    <span>Copy</span>
+                  </button>
+                </div>
+
+                <div class="primary-result-box">
+                  <div>
+                    <div style="font-size:0.75rem; color:var(--text-dim); text-transform:uppercase; margin-bottom:4px;">Equivalent Resistance (R_total)</div>
+                    <div class="result-val-large" id="networkResultTotal">300 Ω</div>
+                  </div>
+                  <span class="result-tag-badge" id="networkModeBadge">Series Network</span>
+                </div>
+
+                <div class="metrics-grid">
+                  <div class="metric-item">
+                    <div class="metric-label">Resistance in Ohms (Ω)</div>
+                    <div class="metric-value" id="networkResultOhms">300 Ω</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">Resistance in Kilo-ohms (kΩ)</div>
+                    <div class="metric-value" id="networkResultKilo">0.3 kΩ</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">Resistance in Mega-ohms (MΩ)</div>
+                    <div class="metric-value" id="networkResultMega">0.0003 MΩ</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">Nearest Standard E24</div>
+                    <div class="metric-value text-green" id="networkResultStandard">300 Ω</div>
+                  </div>
+                </div>
+
+                <!-- Branch Analysis Container if Voltage Provided -->
+                <div class="metric-item" id="networkBranchContainer" style="display:none; margin-bottom:18px;">
+                  <div class="metric-label" id="networkBranchHeader">Branch Voltage Drops & Currents</div>
+                  <div id="networkBranchList" style="font-family:var(--font-mono); font-size:0.85rem; line-height:1.7; margin-top:6px;"></div>
+                </div>
+
+                <div class="explanation-panel">
+                  <div class="explanation-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    <span>Calculation Formula & Steps</span>
+                  </div>
+                  <div class="explanation-steps" id="networkResultExplanation">
+                    Series Formula: R_total = R1 + R2<br>
+                    Values: 100 Ω + 200 Ω<br>
+                    Total Equivalent Resistance = 300 Ω
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =============================================================
+             VIEW: SMD RESISTOR CALCULATOR (NEW)
+             ============================================================= -->
+        <section class="calc-view" id="view-smd">
+          <div class="calc-header">
+            <h2>SMD Resistor Code Calculator</h2>
+            <p>Decode surface-mount resistor codes: 3-Digit (5% standard), 4-Digit (1% precision), and EIA-96 high-precision SMD systems.</p>
+          </div>
+
+          <div class="calc-grid-layout">
+            <div>
+              <div class="calc-panel">
+                <div class="panel-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="6" width="16" height="12" rx="2"/><rect x="2" y="9" width="2" height="6" fill="currentColor"/><rect x="20" y="9" width="2" height="6" fill="currentColor"/><line x1="8" y1="12" x2="16" y2="12" stroke-dasharray="2 2"/></svg>
+                  <span>SMD Marking Input</span>
+                </div>
+
+                <!-- Visual SMD Chip -->
+                <div class="visual-container">
+                  <div class="smd-package-visual">
+                    <div class="smd-metal-terminal smd-metal-left"></div>
+                    <span class="smd-marking-text" id="smdVisualMarking">472</span>
+                    <div class="smd-metal-terminal smd-metal-right"></div>
+                  </div>
+                </div>
+
+                <div class="presets-container">
+                  <span style="font-size:0.75rem; color:var(--text-dim); margin-right:4px;">Quick Examples:</span>
+                  <button type="button" class="preset-chip" data-smd="472">472 (4.7 kΩ 5%)</button>
+                  <button type="button" class="preset-chip" data-smd="1001">1001 (1 kΩ 1%)</button>
+                  <button type="button" class="preset-chip" data-smd="01A">01A (100 Ω EIA-96)</button>
+                  <button type="button" class="preset-chip" data-smd="68C">68C (49.9 kΩ EIA-96)</button>
+                  <button type="button" class="preset-chip" data-smd="4R7">4R7 (4.7 Ω)</button>
+                  <button type="button" class="preset-chip" data-smd="000">000 (0 Ω Jumper)</button>
+                </div>
+
+                <div class="form-group">
+                  <label for="smdCodeInput">
+                    <span>SMD Resistor Marking</span>
+                    <span class="label-hint">Enter 3-digit, 4-digit, or EIA-96 code</span>
+                  </label>
+                  <input type="text" id="smdCodeInput" class="form-control" placeholder="e.g. 472, 1001, 01A, 4R7" value="472" maxlength="6">
+                </div>
+
+                <div class="calc-error-banner" id="smdCalcError"></div>
+
+                <div class="btn-group">
+                  <button type="button" class="btn-primary" id="btnCalcSmd">
+                    <span class="btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></span>
+                    <span>Calculate SMD Value</span>
+                  </button>
+                  <button type="button" class="btn-secondary" id="btnResetSmd">
+                    <span>Reset</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Results -->
+            <div>
+              <div class="result-card" id="smdResultCard">
+                <div class="result-header">
+                  <span class="result-title">SMD Resistance Result</span>
+                  <button type="button" class="copy-btn" id="btnCopySmdResult">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    <span>Copy</span>
+                  </button>
+                </div>
+
+                <div class="primary-result-box">
+                  <div>
+                    <div style="font-size:0.75rem; color:var(--text-dim); text-transform:uppercase; margin-bottom:4px;">Nominal Value</div>
+                    <div class="result-val-large" id="smdResultVal">4.7 kΩ</div>
+                  </div>
+                  <span class="result-tag-badge" id="smdResultTol">±5% (3-Digit)</span>
+                </div>
+
+                <div class="metrics-grid">
+                  <div class="metric-item">
+                    <div class="metric-label">Resistance in Base Ω</div>
+                    <div class="metric-value" id="smdResultOhms">4,700 Ω</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">Resistance in kΩ</div>
+                    <div class="metric-value" id="smdResultKilo">4.7 kΩ</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">Resistance in MΩ</div>
+                    <div class="metric-value" id="smdResultMega">0.0047 MΩ</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">Standard Type</div>
+                    <div class="metric-value text-cyan" id="smdResultStandard">3-Digit Standard SMD</div>
+                  </div>
+                </div>
+
+                <div class="explanation-panel">
+                  <div class="explanation-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    <span>Marking Explanation</span>
+                  </div>
+                  <div class="explanation-steps" id="smdResultExplanation">
+                    3-Digit SMD Code "472":<br>
+                    • First 2 digits: 47<br>
+                    • Multiplier: 10^2 = 100<br>
+                    • Resistance: 47 × 100 = 4.7 kΩ (±5% tolerance)
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =============================================================
+             VIEW: 555 TIMER & RC FILTER (NEW)
+             ============================================================= -->
+        <section class="calc-view" id="view-timer">
+          <div class="calc-header">
+            <h2>555 Timer IC & Passive RC Filter Calculator</h2>
+            <p>Compute oscillation frequency, time periods, duty cycle, and passive filter cutoffs for lab experiments and vivas.</p>
+          </div>
+
+          <div class="calc-grid-layout">
+            <div>
+              <div class="calc-panel">
+                <!-- Submode pills -->
+                <div class="pill-group" id="timerModeGroup">
+                  <button type="button" class="pill-btn active" data-timermode="astable">555 Astable Oscillator</button>
+                  <button type="button" class="pill-btn" data-timermode="monostable">555 Monostable One-Shot</button>
+                  <button type="button" class="pill-btn" data-timermode="filter">Passive RC Filter</button>
+                </div>
+
+                <div class="visual-container">
+                  <div class="ic-dip8-visual">
+                    <div class="ic-notch"></div>
+                    <span class="ic-text-part">NE555P</span>
+                    <span class="ic-text-sub" id="timerVisualSub">Astable Mode</span>
+                  </div>
+                </div>
+
+                <!-- Presets -->
+                <div class="presets-container" id="timerPresetsContainer">
+                  <span style="font-size:0.75rem; color:var(--text-dim); margin-right:4px;">Presets:</span>
+                  <button type="button" class="preset-chip" id="btnPresetAstable1k">1 kHz Tone (1k, 10k, 68nF)</button>
+                  <button type="button" class="preset-chip" id="btnPresetAstable1Hz">1 Hz LED Flasher (1k, 68k, 10µF)</button>
+                </div>
+
+                <!-- Astable Inputs -->
+                <div id="groupAstableInputs">
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="timerR1Input">
+                        <span>Resistor R1 (VCC to Pin 7)</span>
+                      </label>
+                      <div class="input-with-unit">
+                        <input type="number" step="any" id="timerR1Input" class="form-control" value="1">
+                        <select id="timerR1Unit" class="unit-select">
+                          <option value="Ω">Ω</option>
+                          <option value="kΩ" selected>kΩ</option>
+                          <option value="MΩ">MΩ</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="timerR2Input">
+                        <span>Resistor R2 (Pin 7 to Pin 6/2)</span>
+                      </label>
+                      <div class="input-with-unit">
+                        <input type="number" step="any" id="timerR2Input" class="form-control" value="10">
+                        <select id="timerR2Unit" class="unit-select">
+                          <option value="Ω">Ω</option>
+                          <option value="kΩ" selected>kΩ</option>
+                          <option value="MΩ">MΩ</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="timerCInput">
+                      <span>Timing Capacitor C</span>
+                    </label>
+                    <div class="input-with-unit">
+                      <input type="number" step="any" id="timerCInput" class="form-control" value="10">
+                      <select id="timerCUnit" class="unit-select">
+                        <option value="pF">pF</option>
+                        <option value="nF">nF</option>
+                        <option value="µF" selected>µF</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Monostable & Filter Inputs -->
+                <div id="groupMonoFilterInputs" style="display:none;">
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="timerSingleRInput">
+                        <span id="lblSingleR">Resistor R</span>
+                      </label>
+                      <div class="input-with-unit">
+                        <input type="number" step="any" id="timerSingleRInput" class="form-control" value="10">
+                        <select id="timerSingleRUnit" class="unit-select">
+                          <option value="Ω">Ω</option>
+                          <option value="kΩ" selected>kΩ</option>
+                          <option value="MΩ">MΩ</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="timerSingleCInput">
+                        <span id="lblSingleC">Capacitor C</span>
+                      </label>
+                      <div class="input-with-unit">
+                        <input type="number" step="any" id="timerSingleCInput" class="form-control" value="100">
+                        <select id="timerSingleCUnit" class="unit-select">
+                          <option value="pF">pF</option>
+                          <option value="nF" selected>nF</option>
+                          <option value="µF">µF</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="calc-error-banner" id="timerCalcError"></div>
+
+                <div class="btn-group">
+                  <button type="button" class="btn-primary" id="btnCalcTimer">
+                    <span class="btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></span>
+                    <span>Calculate Parameters</span>
+                  </button>
+                  <button type="button" class="btn-secondary" id="btnResetTimer">
+                    <span>Reset</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Results -->
+            <div>
+              <div class="result-card" id="timerResultCard">
+                <div class="result-header">
+                  <span class="result-title">Timer / Filter Output</span>
+                  <button type="button" class="copy-btn" id="btnCopyTimerResult">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    <span>Copy</span>
+                  </button>
+                </div>
+
+                <div class="primary-result-box">
+                  <div>
+                    <div style="font-size:0.75rem; color:var(--text-dim); text-transform:uppercase; margin-bottom:4px;" id="timerPrimaryLabel">Oscillation Frequency (f)</div>
+                    <div class="result-val-large" id="timerPrimaryVal">6.86 Hz</div>
+                  </div>
+                  <span class="result-tag-badge" id="timerModeBadge">f = 1.44 / (R1+2R2)C</span>
+                </div>
+
+                <div class="metrics-grid" id="timerAstableMetrics">
+                  <div class="metric-item">
+                    <div class="metric-label">Total Time Period (T)</div>
+                    <div class="metric-value" id="timerPeriodVal">145.5 ms</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">Duty Cycle (%)</div>
+                    <div class="metric-value text-green" id="timerDutyVal">52.4%</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">High Time (T_high)</div>
+                    <div class="metric-value" id="timerHighVal">76.2 ms</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">Low Time (T_low)</div>
+                    <div class="metric-value" id="timerLowVal">69.3 ms</div>
+                  </div>
+                </div>
+
+                <div class="metrics-grid" id="timerFilterMetrics" style="display:none;">
+                  <div class="metric-item">
+                    <div class="metric-label">Cutoff Frequency (f_c)</div>
+                    <div class="metric-value text-cyan" id="timerFilterFcVal">159.2 Hz</div>
+                  </div>
+                  <div class="metric-item">
+                    <div class="metric-label">Time Constant (τ = RC)</div>
+                    <div class="metric-value text-green" id="timerFilterTauVal">1.0 ms</div>
+                  </div>
+                </div>
+
+                <div class="explanation-panel">
+                  <div class="explanation-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    <span>Calculation Formulas & Steps</span>
+                  </div>
+                  <div class="explanation-steps" id="timerResultExplanation">
+                    1. High Time: T_high = 0.693 × (1k + 10k) × 10µF = 76.2 ms<br>
+                    2. Low Time: T_low = 0.693 × 10k × 10µF = 69.3 ms<br>
+                    3. Frequency: f = 1.44 / ((1k + 20k) × 10µF) = 6.86 Hz
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =============================================================
+             VIEW 9: COMPONENT REFERENCE GUIDE
+             ============================================================= -->
+        <section class="calc-view" id="view-reference">
+          <div class="calc-header">
+            <h2>Electronic Component Quick Reference</h2>
+            <p>Comprehensive guide for ENTC engineering students: schematic symbols, functions, SI units, terminal pinouts, key formulas, and applications.</p>
+          </div>
+
+          <!-- Filter & Search Bar -->
+          <div class="ref-filter-bar">
+            <input type="text" id="refSearchInput" class="form-control ref-search-input" placeholder="Search components, formulas, part numbers...">
+
+            <div class="ref-category-filters" id="refCategoryFilters">
+              <button type="button" class="pill-btn active" data-category="all">All Components</button>
+              <button type="button" class="pill-btn" data-category="passive">Passive</button>
+              <button type="button" class="pill-btn" data-category="semiconductor">Semiconductors</button>
+              <button type="button" class="pill-btn" data-category="ic">Integrated Circuits</button>
+              <button type="button" class="pill-btn" data-category="magnetic">Magnetics</button>
+            </div>
+          </div>
+
+          <!-- Components Directory Grid -->
+          <div class="ref-grid" id="refComponentsGrid">
+            <!-- Rendered dynamically by js/reference.js -->
+          </div>
+        </section>
+
+      </main>
+
+      <!-- Footer -->
+      <footer class="app-footer">
+        <div class="footer-credits">
+          <strong>Electronic Component Calculator</strong> • ENTC Diploma / Degree Project • Offline Compatible
+        </div>
+        <div>
+          Formulas validated to IEEE & EIA Engineering Standards
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- =================================================================
+       LAB REPORT EXPORT & PRINT MODAL
+       ================================================================= -->
+  <div class="modal-backdrop" id="labReportModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <span>Official Lab Calculation Report</span>
+        </h3>
+        <button type="button" class="modal-close-btn" id="btnCloseLabReport" title="Close">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="reportStudentName">Student Name</label>
+          <input type="text" id="reportStudentName" class="form-control" placeholder="e.g. Omprasad Kulkarni" value="ENTC Student">
+        </div>
+        <div class="form-group">
+          <label for="reportRollNo">Roll No. / PRN</label>
+          <input type="text" id="reportRollNo" class="form-control" placeholder="e.g. ENTC-2026-42" value="ENTC-01">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="reportCollege">College / Institute</label>
+          <input type="text" id="reportCollege" class="form-control" placeholder="e.g. Department of ENTC Engineering" value="Department of Electronics & Telecommunication">
+        </div>
+        <div class="form-group">
+          <label for="reportSubject">Subject / Lab Experiment</label>
+          <select id="reportSubject" class="form-control">
+            <option value="Basic Electronics / Analog Circuits">Basic Electronics / Analog Circuits</option>
+            <option value="Linear Integrated Circuits (LIC)">Linear Integrated Circuits (LIC)</option>
+            <option value="Electronic Circuit Design (ECD)">Electronic Circuit Design (ECD)</option>
+            <option value="Power Electronics Lab">Power Electronics Lab</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Report Preview (Ready for Submission / Printing)</label>
+        <div class="print-report-preview" id="reportPreviewContent">
+================================================================================
+           ELECTRONIC COMPONENT CALCULATION & LAB JOURNAL REPORT
+================================================================================
+Generated via ElectroCalc ENTC Workbench
+Date: 2026-11-22
+Student: ENTC Student | Roll: ENTC-01
+Institute: Department of Electronics & Telecommunication
+Subject: Basic Electronics / Analog Circuits
+--------------------------------------------------------------------------------
+1. RESISTOR COLOR CODE:
+   • Nominal: 4.7 kΩ ±5%
+   • Range: 4.465 kΩ – 4.935 kΩ (4,700 Ω Base)
+   • E24 Standard Match: 4.7 kΩ
+
+2. CAPACITOR VALUE:
+   • EIA Code: 104 (±10%)
+   • Capacitance: 100 nF (100,000 pF | 0.1 µF)
+
+3. LED SERIES LIMITING RESISTOR:
+   • Supply: 5 V | LED Forward: 2 V | Current: 20 mA
+   • Resistor Required: 150 Ω (Power: 60 mW)
+   • Recommended Rating: 1/4 W (0.25 W) [2x Safety Margin]
+
+4. VOLTAGE DIVIDER:
+   • Vin: 10 V | R1: 10 kΩ | R2: 10 kΩ
+   • Vout: 5 V | Divider Current: 500 µA | Power: 5 mW
+--------------------------------------------------------------------------------
+Faculty Sign / Stamp: ________________________
+================================================================================
+        </div>
+      </div>
+
+      <div class="btn-group" style="justify-content: flex-end; margin-top: 14px;">
+        <button type="button" class="btn-primary" id="btnPrintReportAction">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          <span>Print / Save as PDF</span>
+        </button>
+        <button type="button" class="btn-secondary" id="btnCopyReportText">
+          <span>Copy Text</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts in dependency order -->
+  <script src="js/units.js"></script>
+  <script src="js/resistor.js"></script>
+  <script src="js/smd-resistor.js"></script>
+  <script src="js/capacitor.js"></script>
+  <script src="js/led.js"></script>
+  <script src="js/timer555.js"></script>
+  <script src="js/ohms-law.js"></script>
+  <script src="js/power.js"></script>
+  <script src="js/voltage-divider.js"></script>
+  <script src="js/series-parallel.js"></script>
+  <script src="js/reference.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+
